@@ -1,0 +1,14 @@
+.global_numbers_wr{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.global_numbers_item{
+    display: flex;
+    padding-right: 10px;
+}
+.global_numbers_item_name{
+    color: grey;
+    padding-right: 5px;
+}

@@ -1,0 +1,27 @@
+.table {
+    min-width: 100%;
+    border: 0;
+    white-space: nowrap;
+    border-spacing: 0;
+    table-layout: fixed;
+    border-color: unset;
+}
+
+.td {
+    padding: 10px 16px 10px 16px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    /* background: #1c1b1b; */
+}
+.th {
+    padding: 10px 16px 10px 16px;
+    text-align: left;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    /* background: #1c1b1b; */
+}
+.tr:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
