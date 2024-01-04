@@ -1,19 +1,42 @@
 "use client"
-import { useTable, useSortBy } from 'react-table'
+import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table'
 import styles from './MainTable.module.css'
+
+
+import GlobalFilter from '../GlobalFilter/GlobalFilter'
+
+
 export default function Table({ columns, data }) {
     const {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
+        state: { globalFilter, pageIndex, pageSize },
+        page,
+
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+
+
         prepareRow,
+        preGlobalFilteredRows,
+        setGlobalFilter,
     } = useTable(
         {
             columns,
             data,
+            initialState: { pageIndex: 0, pageSize: 10 },
         },
-        useSortBy
+        useGlobalFilter,
+        useSortBy,
+        usePagination
+
     )
 
     // We don't want to render all 2000 rows for this example, so cap
@@ -22,6 +45,17 @@ export default function Table({ columns, data }) {
 
     return (
         <>
+
+            <div className="table__top-content">
+                <div className="search__wr">
+                    {/* <IconSearch /> */}
+                    <GlobalFilter
+                        preGlobalFilteredRows={preGlobalFilteredRows}
+                        globalFilter={globalFilter}
+                        setGlobalFilter={setGlobalFilter}
+                    />
+                </div>
+            </div>
             <table className={`${styles.table}`} {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => (
@@ -45,7 +79,7 @@ export default function Table({ columns, data }) {
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {rows.map(
+                    {page.map(
                         (row, i) => {
                             prepareRow(row);
                             return (
@@ -61,6 +95,50 @@ export default function Table({ columns, data }) {
                     )}
                 </tbody>
             </table>
+            <div className={styles.pagination}>
+                <button className={styles.pagination_btn} onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                    {'<<'}
+                </button>{' '}
+                <button className={styles.pagination_btn} onClick={() => previousPage()} disabled={!canPreviousPage}>
+                    {'<'}
+                </button>{' '}
+                <button className={styles.pagination_btn} onClick={() => nextPage()} disabled={!canNextPage}>
+                    {'>'}
+                </button>{' '}
+                <button className={styles.pagination_btn} onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                    {'>>'}
+                </button>{' '}
+                <span>
+                    Page{' '}
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>{' '}
+                </span>
+                <span>
+                    | Go to page:{' '}
+                    <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={e => {
+                            const page = e.target.value ? Number(e.target.value) - 1 : 0
+                            gotoPage(page)
+                        }}
+                        style={{ width: '100px' }}
+                    />
+                </span>{' '}
+                <select
+                    value={pageSize}
+                    onChange={e => {
+                        setPageSize(Number(e.target.value))
+                    }}
+                >
+                    {[10, 20, 30, 40, 50].map(pageSize => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </>
     )
 }

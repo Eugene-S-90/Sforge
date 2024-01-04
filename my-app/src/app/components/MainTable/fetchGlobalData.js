@@ -8,7 +8,7 @@ export default function fetchGlobalData() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://dev.app.spellforge.ai/api/global-records/');
+                const response = await fetch('https://dev.app.spellforge.ai/api/public-agent-stats/');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
