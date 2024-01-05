@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 
 export default function fetchGlobalData() {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -13,6 +13,7 @@ export default function fetchGlobalData() {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const jsonData = await response.json();
+                console.log(jsonData)
                 setData(jsonData);
                 setLoading(false);
             } catch (error) {
@@ -25,10 +26,6 @@ export default function fetchGlobalData() {
     }, []);
 
     return (
-        [
-            { firstName: 'jon', lastName: "Ddow", age: 24, visits: 12, Description: 'description', Author: 'jeka1' },
-            { firstName: 'jin', lastName: "jow", age: 22, visits: 1,Description: 'description', Author: 'Andrew2' },
-
-        ]
+        data
     )
 }

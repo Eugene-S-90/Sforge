@@ -1,8 +1,34 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './GlobalNumbers.module.css'
 
 export default function globalNumbers() {
+
+  const [fetchedData, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://dev.app.spellforge.ai/api/global-records/');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setData(jsonData[0]);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(fetchedData)
+
   let items = [
     { name: 'AI agents:', value: 12 },
     { name: 'Delta :', value: 6 },
@@ -25,7 +51,63 @@ export default function globalNumbers() {
 
   return (
     <div className={styles.global_numbers_wr}>
-      {listItems}
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+          Total agents
+        </div>
+        <div className={styles.global_numbers_item_value}>
+          {fetchedData.total_agents}
+        </div>
+      </div>
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+        Total_agents_delta
+        </div>
+        <div className={styles.global_numbers_item_value}>
+        {fetchedData.total_agents_delta}
+        </div>
+      </div>
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+        total_dialogs
+        </div>
+        <div className={styles.global_numbers_item_value}>
+        {fetchedData.total_dialogs}
+        </div>
+      </div>
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+        _7d
+        </div>
+        <div className={styles.global_numbers_item_value}>
+        {fetchedData._7d}
+        </div>
+      </div>
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+        _24h
+        </div>
+        <div className={styles.global_numbers_item_value}>
+        {fetchedData._24h}
+        </div>
+      </div>
+
+
+      <div className={styles.global_numbers_item}>
+        <div className={styles.global_numbers_item_name}>
+        _24h_percent
+        </div>
+        <div className={styles.global_numbers_item_value}>
+        {fetchedData._24h_percent}
+        </div>
+      </div>
+
+
     </div>
   )
 } 

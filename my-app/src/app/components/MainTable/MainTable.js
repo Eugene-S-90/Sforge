@@ -5,52 +5,66 @@ import fetchGlobalData from './fetchGlobalData'
 import Table from './Table'
 
 export default function MainTable() {
-    let datat = fetchGlobalData();
+    const [fetchedData, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://dev.app.spellforge.ai/api/public-agent-stats/');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const jsonData = await response.json();
+                console.log(jsonData)
+                setData(jsonData);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Include Avatar',
-                accessor: 'firstName',
-            },
-            {
                 Header: 'Name',
-                accessor: 'lastName',
+                accessor: 'name',
             },
             {
-                Header: 'Description',
-                accessor: 'Description',
+                Header: 'Include Avatar',
+                accessor: 'avatar',
             },
             {
-                Header: 'Author',
-                accessor: 'Author',
-            },
-            {
-                Header: 'Dialogs',
-                accessor: 'Dialogs',
-            },
-            {
-                Header: 'Updated',
-                accessor: 'Updated',
+                Header: 'Chart',
+                accessor: 'chart',
             },
             {
                 Header: 'Created',
-                accessor: 'Created',
+                accessor: 'created',
             },
             {
-                Header: '24h changes',
-                accessor: '24',
+                Header: 'Description',
+                accessor: 'description',
             },
             {
-                Header: '7d changes',
-                accessor: '7',
+                Header: 'Dialogs',
+                accessor: 'dialogs_num',
+            },
+            {
+                Header: 'Updated',
+                accessor: 'updated',
             },
 
         ],
         []
     )
 
-    // const data = React.useMemo(() => makeData(20), [])
-    const data = React.useMemo(() => datat, [])
+    const data = React.useMemo(() => fetchedData.results ? fetchedData.results : [], [fetchedData])
 
     return (
         <div>
