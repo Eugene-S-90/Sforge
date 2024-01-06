@@ -4,7 +4,7 @@ import styles from './MainTable.module.css'
 
 
 import GlobalFilter from '../GlobalFilter/GlobalFilter'
-
+import GlobalNumbers from '../../components/GlobalNumbers/GlobalNumbers'
 
 export default function Table({ columns, data }) {
     const {
@@ -31,7 +31,7 @@ export default function Table({ columns, data }) {
         {
             columns,
             data,
-            initialState: { pageIndex: 0, pageSize: 10 },
+            initialState: { pageIndex: 0, pageSize: 5 },
         },
         useGlobalFilter,
         useSortBy,
@@ -46,7 +46,7 @@ export default function Table({ columns, data }) {
     return (
         <>
 
-            <div className="table__top-content">
+            <div className={styles.table__top_content}>
                 <div className="search__wr">
                     {/* <IconSearch /> */}
                     <GlobalFilter
@@ -55,6 +55,7 @@ export default function Table({ columns, data }) {
                         setGlobalFilter={setGlobalFilter}
                     />
                 </div>
+                <GlobalNumbers />
             </div>
             <table className={`${styles.table}`} {...getTableProps()}>
                 <thead>
@@ -96,6 +97,9 @@ export default function Table({ columns, data }) {
                 </tbody>
             </table>
             <div className={styles.pagination}>
+                <div className='pagination_btn' onClick={() => gotoPage(0)}>
+
+                </div>
                 <button className={styles.pagination_btn} onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {'<<'}
                 </button>{' '}

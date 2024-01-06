@@ -20,7 +20,8 @@
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgba(0, 0, 0, 0.12);
-    /* background: #1c1b1b; */
+    background: rgb(30 131 233);
+    color: #fff;
 }
 .tr:hover {
     background-color: rgba(0, 0, 0, 0.04);
@@ -30,7 +31,38 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    align-items: center;
 }
 .pagination_btn {
-    margin: 0 5px;
+    border          : none;
+    outline         : none;
+    width           : 32px;
+    height          : 32px;
+    cursor          : pointer;
+    background-color: #1e83e9;
+    color           : #fff;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    margin          : 5px;
+}
+
+.pagination_btn:disabled {
+    color              : grey;
+    background-color   : #F4F5F8;
+    /* border-color    : red; */
+  }
+
+.search_input {
+    padding: 6px;
+    border: 2px solid rgb(30 131 233)!important;
+    outline: none;
+}
+
+.table__top_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

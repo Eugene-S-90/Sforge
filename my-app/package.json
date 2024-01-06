@@ -13,7 +13,8 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-table": "^7.8.0"
+    "react-table": "^7.8.0",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "eslint": "^8",

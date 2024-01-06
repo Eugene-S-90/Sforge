@@ -1,8 +1,6 @@
 .global_numbers_wr{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 .global_numbers_item{
     display: flex;

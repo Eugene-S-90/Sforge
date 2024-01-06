@@ -4,6 +4,9 @@ import makeData from './makeData'
 import fetchGlobalData from './fetchGlobalData'
 import Table from './Table'
 
+import Image from 'next/image'
+import mockImg from '../../../../public/images/photo_2024-01-06_20-59-36.jpg'
+
 export default function MainTable() {
     const [fetchedData, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -38,18 +41,33 @@ export default function MainTable() {
             {
                 Header: 'Include Avatar',
                 accessor: 'avatar',
-            },
-            {
-                Header: 'Chart',
-                accessor: 'chart',
+                Cell: ({ row, cell }) => {
+                    return <div>
+                        <Image
+                            src={mockImg}
+                            alt="Picture of the author"
+                            width={70}
+                            height={50}
+                        // blurDataURL="data:..." automatically provided
+                        // placeholder="blur" // Optional blur-up while loading
+                        />
+                    </div>
+                }
             },
             {
                 Header: 'Created',
                 accessor: 'created',
+                Cell: ({ row, cell }) => {
+                    let date = new Date(row.values.created)
+                    return <div>{` ${date.toLocaleString()}`}</div >
+                },
             },
             {
                 Header: 'Description',
                 accessor: 'description',
+                Cell: ({ row, cell }) => {
+                    return <div>{row.values.description ? row.values.description : "Description goes there"}</div>
+                },
             },
             {
                 Header: 'Dialogs',
@@ -58,6 +76,26 @@ export default function MainTable() {
             {
                 Header: 'Updated',
                 accessor: 'updated',
+                Cell: ({ row, cell }) => {
+                    let date = new Date(row.values.updated)
+                    return <div>{` ${date.toLocaleString()}`}</div >
+                },
+            },
+            {
+                Header: 'Chart',
+                accessor: 'chart',
+                Cell: ({ row, cell }) => {
+                    return <div>
+                        <Image
+                            src={mockImg}
+                            alt="Picture of the author"
+                            width={70}
+                            height={50}
+                        // blurDataURL="data:..." automatically provided
+                        // placeholder="blur" // Optional blur-up while loading
+                        />
+                    </div>
+                }
             },
 
         ],

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {
     useAsyncDebounce,
 } from 'react-table'
-
+import styles from '../MainTable/MainTable.module.css'
 import 'regenerator-runtime'
 
 export default function GlobalFilter({
@@ -17,7 +17,7 @@ export default function GlobalFilter({
     }, 200)
 
     return (
-        <input className="search-input"
+        <input className={styles.search_input}
             value={value || ""}
             onChange={e => {
                 setValue(e.target.value);

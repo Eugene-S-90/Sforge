@@ -99,7 +99,7 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 .main-wrapper{
-  padding:0 10px;
+  padding:10px 20px;
 }
 a {
   color: inherit;

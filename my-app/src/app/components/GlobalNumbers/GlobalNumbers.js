@@ -54,7 +54,7 @@ export default function globalNumbers() {
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-          Total agents
+          Total agents:
         </div>
         <div className={styles.global_numbers_item_value}>
           {fetchedData.total_agents}
@@ -63,47 +63,47 @@ export default function globalNumbers() {
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-        Total_agents_delta
+          Total agents delta:
         </div>
         <div className={styles.global_numbers_item_value}>
-        {fetchedData.total_agents_delta}
+          {fetchedData.total_agents_delta}
         </div>
       </div>
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-        total_dialogs
+          Total dialogs:
         </div>
         <div className={styles.global_numbers_item_value}>
-        {fetchedData.total_dialogs}
+          {fetchedData.total_dialogs}
         </div>
       </div>
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-        _7d
+          7d:
         </div>
         <div className={styles.global_numbers_item_value}>
-        {fetchedData._7d}
+          {fetchedData._7d}
         </div>
       </div>
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-        _24h
+          24h:
         </div>
         <div className={styles.global_numbers_item_value}>
-        {fetchedData._24h}
+          {fetchedData._24h}
         </div>
       </div>
 
 
       <div className={styles.global_numbers_item}>
         <div className={styles.global_numbers_item_name}>
-        _24h_percent
+          24h %:
         </div>
         <div className={styles.global_numbers_item_value}>
-        {fetchedData._24h_percent}
+          {fetchedData._24h_percent}
         </div>
       </div>
 

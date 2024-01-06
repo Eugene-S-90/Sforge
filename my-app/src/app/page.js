@@ -8,7 +8,6 @@ import MainTable from './components/MainTable/MainTable'
 export default function Home() {
   return (
     <main className='main-wrapper'>
-      <GlobalNumbers />
       <MainTable />
     </main>
   )
