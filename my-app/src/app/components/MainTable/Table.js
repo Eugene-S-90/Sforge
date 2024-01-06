@@ -101,16 +101,24 @@ export default function Table({ columns, data }) {
 
                 </div>
                 <button className={styles.pagination_btn} onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {'<<'}
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.43312 0.704965L5.71669 0L0.366369 5.14752L0 5.5L5.71669 11L6.43312 10.295L1.44917 5.5L6.43312 0.704965ZM10 0.704965L9.28357 0L3.93325 5.14752L3.56688 5.5L9.28357 11L10 10.295L5.01605 5.5L10 0.704965Z" fill="#5F6E7F" fillOpacity="1" />
+                    </svg>
                 </button>{' '}
                 <button className={styles.pagination_btn} onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    {'<'}
+                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.34268 0L6 0.674887L1.30047 5.5L6 10.3251L5.34268 11L0.31449 5.83744L0 5.5L0.31449 5.16256L5.34268 0Z" fill="#5F6E7F" fillOpacity="1" />
+                    </svg>
                 </button>{' '}
                 <button className={styles.pagination_btn} onClick={() => nextPage()} disabled={!canNextPage}>
-                    {'>'}
+                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.657321 0L5.68551 5.16256L6 5.5L5.68551 5.83744L0.657321 11L0 10.3251L4.69953 5.5L0 0.674887L0.657321 0Z" fill="#5F6E7F" fillOpacity="1" />
+                    </svg>
                 </button>{' '}
                 <button className={styles.pagination_btn} onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                    {'>>'}
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.43312 5.5L0.716433 0L0 0.704965L4.98395 5.5L0 10.295L0.716433 11L6.43312 5.5ZM10 5.5L4.28331 0L3.56688 0.704965L8.55083 5.5L3.56688 10.295L4.28331 11L10 5.5Z" fill="#5F6E7F" fillOpacity="1" />
+                    </svg>
                 </button>{' '}
                 <span>
                     Page{' '}
@@ -136,7 +144,7 @@ export default function Table({ columns, data }) {
                         setPageSize(Number(e.target.value))
                     }}
                 >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
+                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>

@@ -1,7 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import makeData from './makeData'
-import fetchGlobalData from './fetchGlobalData'
 import Table from './Table'
 
 import Image from 'next/image'
